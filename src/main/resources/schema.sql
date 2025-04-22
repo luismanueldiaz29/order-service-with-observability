@@ -1,6 +1,6 @@
 CREATE SCHEMA IF NOT EXISTS orders;
 
-CREATE TABLE orders.orders (
+CREATE TABLE IF NOT EXISTS orders.orders (
                                id int8 NOT NULL,
                                customer_id int8 NULL,
                                order_date timestamptz(6) NULL,
