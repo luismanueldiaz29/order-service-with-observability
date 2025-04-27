@@ -1,0 +1,7 @@
+Ejecutar manualmente:
+
+1. Installar agente
+curl -L -O https://github.com/open-telemetry/opentelemetry-java-instrumentation/releases/latest/download/opentelemetry-javaagent.jar
+
+2. Ejcuatar de la siguiente manera:
+java -javaagent:opentelemetry-javaagent.jar -Dotel.traces.exporter=logging -Dotel.metrics.exporter=logging -Dotel.logs.exporter=logging -jar .\build\libs\observability-0.0.1-SNAPSHOT.jar

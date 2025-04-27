@@ -1,6 +1,12 @@
 version: '3.9'
 
 services:
+  order-service:
+    build: ./
+    environment:
+      HOST: postgres
+    ports:
+        - '8084:8084'
   postgres:
     container_name: postgres
     image: postgres:latest

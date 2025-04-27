@@ -16,7 +16,7 @@ public class OrderController {
     private final OrderRepository orderRepository;
 
     @GetMapping
-    public List<Order> findByAll(@PathVariable Long id) {
+    public List<Order> findByAll() {
         return this.orderRepository.findAll();
     }
 

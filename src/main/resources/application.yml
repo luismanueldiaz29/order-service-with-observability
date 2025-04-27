@@ -7,13 +7,13 @@ spring:
 
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5434/opentelemetry
+    url: jdbc:postgresql://${HOST:localhost}:5434/opentelemetry
     username: username
     password: password
 
   sql:
     init:
-      mode: always
+      mode: never
 
   jpa:
     show-sql: true
