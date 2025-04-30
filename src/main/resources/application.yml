@@ -6,8 +6,8 @@ spring:
     name: order service
 
   datasource:
-    driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://${HOST:localhost}:5434/opentelemetry
+#    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5434}/opentelemetry
     username: username
     password: password
 
@@ -19,11 +19,12 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
-
     properties:
       hibernate:
         format_sql: true
         default_schema: orders
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
 logging:
   level:
     root: debug

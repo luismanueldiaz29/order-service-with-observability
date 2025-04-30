@@ -4,9 +4,19 @@ services:
   order-service:
     build: ./
     environment:
-      HOST: postgres
+      DB_HOST: "postgres"
+      DB_PORT: "5432"
+      PORT: "8085"
+      OTEL_TRACES_EXPORTER: "logging"
+      OTEL_METRICS_EXPORTER: "logging"
+      OTEL_LOGS_EXPORTER: "logging"
     ports:
         - '8084:8084'
+    networks:
+      - order-services-network
+    depends_on:
+      - postgres
+
   postgres:
     container_name: postgres
     image: postgres:latest
@@ -17,3 +27,9 @@ services:
       POSTGRES_PASSWORD: password
     ports:
       - "5434:5432"
+    networks:
+      - order-services-network
+
+networks:
+  order-services-network:
+    driver: bridge
