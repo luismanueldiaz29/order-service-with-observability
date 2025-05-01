@@ -13,7 +13,7 @@ spring:
 
   sql:
     init:
-      mode: always
+      mode: never
 
   jpa:
     show-sql: true
