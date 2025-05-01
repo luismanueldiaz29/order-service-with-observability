@@ -7,7 +7,7 @@ FROM ${BUILDER_IMAGE} as builder
 WORKDIR /home/app
 
 # Copia solo los archivos necesarios para resolver dependencias primero
-COPY build.gradle 1.gradle gradlew ./
+COPY build.gradle settings.gradle gradlew ./
 COPY gradle /home/app/gradle
 RUN ./gradlew build -x test --no-daemon || true
 

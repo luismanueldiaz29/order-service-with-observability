@@ -4,16 +4,15 @@ services:
   order-service:
     build: ./
     environment:
-      DB_HOST: "postgres"
-      DB_PORT: "5432"
-      PORT: "8085"
-      OTEL_TRACES_EXPORTER: "logging"
-      OTEL_METRICS_EXPORTER: "logging"
-      OTEL_LOGS_EXPORTER: "logging"
+      DB_HOST: postgres
+      DB_PORT: 5432
+      PORT: 8084
+      OTEL_SERVICE_NAME: order-service
+      OTEL_TRACES_EXPORTER: logging
+      OTEL_METRICS_EXPORTER: logging
+      OTEL_LOGS_EXPORTER: logging
     ports:
-        - '8084:8084'
-    networks:
-      - order-services-network
+      - 8084:8084
     depends_on:
       - postgres
 
@@ -26,10 +25,4 @@ services:
       POSTGRES_USER: username
       POSTGRES_PASSWORD: password
     ports:
-      - "5434:5432"
-    networks:
-      - order-services-network
-
-networks:
-  order-services-network:
-    driver: bridge
+      - 5434:5432
