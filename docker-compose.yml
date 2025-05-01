@@ -8,13 +8,25 @@ services:
       DB_PORT: 5432
       PORT: 8084
       OTEL_SERVICE_NAME: order-service
-      OTEL_TRACES_EXPORTER: logging
+      OTEL_TRACES_EXPORTER: jaeger
+      OTEL_EXPORTER_JAEGER_ENDPOINT: http://jaeger:14250
       OTEL_METRICS_EXPORTER: logging
       OTEL_LOGS_EXPORTER: logging
     ports:
       - 8084:8084
     depends_on:
       - postgres
+      - jaeger-all-in-one
+
+  jaeger-all-in-one:
+    container_name: jaeger
+    image: jaegertracing/all-in-one:latest
+    environment:
+      - COLLECTOR_OTLP_ENABLED=true
+    restart: always
+    ports:
+      - 16686:16686
+      - 14250
 
   postgres:
     container_name: postgres
